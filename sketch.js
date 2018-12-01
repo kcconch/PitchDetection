@@ -17,6 +17,7 @@ let drawPitch = 0;
 let drawing = [];
 let x = 0;
 let hPsmooth = 0;
+let hP = 0;
 
 
 function setup() {
@@ -39,19 +40,21 @@ function draw() {
   noStroke();
 
   let h = map(vol, 0, 1, -100, 100);
-  let hP = map(drawPitch, 0, 1000, 100, -100);
+  hP = map(drawPitch, 0, 1000, 100, -200);
   hPsmooth = lerp(hPsmooth, hP, 0.15);
 
   if (hP >= 65) {
     x-= 0.5;
-  } else if (hP <= -65){
+  } else if (hP <= -10){
     x-= 0.5;
   } else {
     x++;
   }
 
 
-  drawLine(x, hPsmooth);
+  drawLine(x, hPsmooth+100);
+
+  select('#result2').html(hP);
 
 }
 
@@ -71,6 +74,7 @@ function getPitch() {
       drawPitch = frequency;
     } else {
       select('#result').html('No pitch detected');
+      select('#result2').html('No pitch detected');
     }
     getPitch();
   })
