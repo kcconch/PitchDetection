@@ -21,7 +21,7 @@ let hP = 0;
 
 
 function setup() {
-  createCanvas(800, 400);
+  createCanvas(windowWidth, 400);
   background(0);
 
   audioContext = getAudioContext();
